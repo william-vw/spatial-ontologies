@@ -1,0 +1,292 @@
+@prefix : <http://purl.org/spatial/context.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://purl.org/spatial/context.owl> .
+
+<http://purl.org/spatial/context.owl> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/spatial/context.owl#ambientContext
+:ambientContext rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :context ;
+                rdfs:range :AmbientContext .
+
+
+###  http://purl.org/spatial/context.owl#carriesDevice
+:carriesDevice rdf:type owl:ObjectProperty .
+
+
+###  http://purl.org/spatial/context.owl#context
+:context rdf:type owl:ObjectProperty ;
+         rdfs:domain :ContextEntity ;
+         rdfs:range :Context .
+
+
+###  http://purl.org/spatial/context.owl#influences
+:influences rdf:type owl:ObjectProperty ;
+            rdfs:domain :Actuator ;
+            rdfs:range :ContextValue .
+
+
+###  http://purl.org/spatial/context.owl#offers
+:offers rdf:type owl:ObjectProperty ;
+        rdfs:range :DeviceService .
+
+
+###  http://purl.org/spatial/context.owl#proxType
+:proxType rdf:type owl:ObjectProperty ;
+          rdfs:domain :LocationContext ;
+          rdfs:range :ProximityType .
+
+
+###  http://purl.org/spatial/context.owl#senses
+:senses rdf:type owl:ObjectProperty ;
+        rdfs:domain :Sensor ;
+        rdfs:range :Context .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#describedBy
+<http://www.co-ode.org/ontologies/ont.owl#describedBy> rdf:type owl:ObjectProperty ;
+                                                       rdfs:domain :LocationContext ;
+                                                       rdfs:range <http://www.co-ode.org/ontologies/ont.owl#SpatialShape> .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://purl.org/spatial/context.owl#callDone
+:callDone rdf:type owl:DatatypeProperty ;
+          rdfs:range xsd:boolean .
+
+
+###  http://purl.org/spatial/context.owl#certainty
+:certainty rdf:type owl:DatatypeProperty ;
+           rdfs:domain [ rdf:type owl:Class ;
+                         owl:unionOf ( :AmbientContext
+                                       :Context
+                                     )
+                       ] ;
+           rdfs:range xsd:float .
+
+
+###  http://purl.org/spatial/context.owl#from
+:from rdf:type owl:DatatypeProperty ;
+      rdfs:domain :Context ;
+      rdfs:range xsd:dateTimeStamp .
+
+
+###  http://purl.org/spatial/context.owl#inCall
+:inCall rdf:type owl:DatatypeProperty ;
+        rdfs:range xsd:boolean .
+
+
+###  http://purl.org/spatial/context.owl#until
+:until rdf:type owl:DatatypeProperty ;
+       rdfs:domain :Context ;
+       rdfs:range xsd:dateTimeStamp .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://purl.org/spatial/context.owl#ActivityContext
+:ActivityContext rdf:type owl:Class ;
+                 rdfs:subClassOf :Context .
+
+
+###  http://purl.org/spatial/context.owl#ActivityValue
+:ActivityValue rdf:type owl:Class ;
+               rdfs:subClassOf :ContextValue .
+
+
+###  http://purl.org/spatial/context.owl#Actuator
+:Actuator rdf:type owl:Class ;
+          rdfs:subClassOf :ContextService .
+
+
+###  http://purl.org/spatial/context.owl#Alert
+:Alert rdf:type owl:Class ;
+       rdfs:subClassOf :DeviceService .
+
+
+###  http://purl.org/spatial/context.owl#AmbientContext
+:AmbientContext rdf:type owl:Class ;
+                rdfs:subClassOf :Context .
+
+
+###  http://purl.org/spatial/context.owl#AmbientValue
+:AmbientValue rdf:type owl:Class ;
+              rdfs:subClassOf :ContextValue .
+
+
+###  http://purl.org/spatial/context.owl#Brightness
+:Brightness rdf:type owl:Class ;
+            rdfs:subClassOf :PropertyValue .
+
+
+###  http://purl.org/spatial/context.owl#Context
+:Context rdf:type owl:Class .
+
+
+###  http://purl.org/spatial/context.owl#ContextEntity
+:ContextEntity rdf:type owl:Class .
+
+
+###  http://purl.org/spatial/context.owl#ContextService
+:ContextService rdf:type owl:Class ;
+                rdfs:subClassOf :DeviceService .
+
+
+###  http://purl.org/spatial/context.owl#ContextValue
+:ContextValue rdf:type owl:Class .
+
+
+###  http://purl.org/spatial/context.owl#DeviceProperty
+:DeviceProperty rdf:type owl:Class ;
+                rdfs:subClassOf :Context .
+
+
+###  http://purl.org/spatial/context.owl#DeviceService
+:DeviceService rdf:type owl:Class .
+
+
+###  http://purl.org/spatial/context.owl#Display
+:Display rdf:type owl:Class ;
+         rdfs:subClassOf :DeviceService .
+
+
+###  http://purl.org/spatial/context.owl#Light
+:Light rdf:type owl:Class ;
+       rdfs:subClassOf :AmbientValue .
+
+
+###  http://purl.org/spatial/context.owl#LocationContext
+:LocationContext rdf:type owl:Class ;
+                 rdfs:subClassOf :Context .
+
+
+###  http://purl.org/spatial/context.owl#Noise
+:Noise rdf:type owl:Class ;
+       rdfs:subClassOf :AmbientValue .
+
+
+###  http://purl.org/spatial/context.owl#PropertyValue
+:PropertyValue rdf:type owl:Class ;
+               rdfs:subClassOf :ContextValue .
+
+
+###  http://purl.org/spatial/context.owl#ProximityType
+:ProximityType rdf:type owl:Class .
+
+
+###  http://purl.org/spatial/context.owl#Sensor
+:Sensor rdf:type owl:Class ;
+        rdfs:subClassOf :ContextService .
+
+
+###  http://purl.org/spatial/context.owl#ServiceState
+:ServiceState rdf:type owl:Class .
+
+
+###  http://purl.org/spatial/context.owl#Sound
+:Sound rdf:type owl:Class ;
+       rdfs:subClassOf :DeviceService .
+
+
+###  http://purl.org/spatial/context.owl#Temp
+:Temp rdf:type owl:Class ;
+      rdfs:subClassOf :AmbientValue .
+
+
+###  http://purl.org/spatial/context.owl#TimeContext
+:TimeContext rdf:type owl:Class ;
+             rdfs:subClassOf :Context .
+
+
+###  http://purl.org/spatial/context.owl#TimeValue
+:TimeValue rdf:type owl:Class ;
+           rdfs:subClassOf :ContextValue .
+
+
+###  http://purl.org/spatial/context.owl#Volume
+:Volume rdf:type owl:Class ;
+        rdfs:subClassOf :PropertyValue .
+
+
+###  http://purl.org/spatial/spatial-shape.owl#SpatialEntity
+<http://purl.org/spatial/spatial-shape.owl#SpatialEntity> rdf:type owl:Class ;
+                                                          rdfs:subClassOf :ContextEntity .
+
+
+###  http://www.co-ode.org/ontologies/ont.owl#SpatialShape
+<http://www.co-ode.org/ontologies/ont.owl#SpatialShape> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://purl.org/spatial/context.owl#Active
+:Active rdf:type owl:NamedIndividual ,
+                 :ActivityValue .
+
+
+###  http://purl.org/spatial/context.owl#Cooking
+:Cooking rdf:type owl:NamedIndividual ,
+                  :ActivityValue .
+
+
+###  http://purl.org/spatial/context.owl#DayTime
+:DayTime rdf:type owl:NamedIndividual ,
+                  :TimeValue .
+
+
+###  http://purl.org/spatial/context.owl#Inactive
+:Inactive rdf:type owl:NamedIndividual ,
+                   :ActivityValue .
+
+
+###  http://purl.org/spatial/context.owl#Inside
+:Inside rdf:type owl:NamedIndividual ,
+                 :ProximityType .
+
+
+###  http://purl.org/spatial/context.owl#MealTime
+:MealTime rdf:type owl:NamedIndividual ,
+                   :TimeValue .
+
+
+###  http://purl.org/spatial/context.owl#Nearby
+:Nearby rdf:type owl:NamedIndividual ,
+                 :ProximityType .
+
+
+###  http://purl.org/spatial/context.owl#NightTime
+:NightTime rdf:type owl:NamedIndividual ,
+                    :TimeValue .
+
+
+###  http://purl.org/spatial/context.owl#Off
+:Off rdf:type owl:NamedIndividual ,
+              :ServiceState .
+
+
+###  http://purl.org/spatial/context.owl#On
+:On rdf:type owl:NamedIndividual ,
+             :ServiceState .
+
+
+###  http://purl.org/spatial/context.owl#WokenUp
+:WokenUp rdf:type owl:NamedIndividual ,
+                  :ActivityValue .
+
+
+###  Generated by the OWL API (version 4.5.7.2018-12-02T02:23:35Z) https://github.com/owlcs/owlapi
